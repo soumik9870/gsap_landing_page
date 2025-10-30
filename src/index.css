@@ -207,10 +207,10 @@ body {
     }
 
     .content {
-      @apply relative z-10 my-5 lg:-mt-40 bg-black font-semibold text-xl text-dark-100 lg:opacity-0;
+  @apply relative z-10 my-5 lg:-mt-40 bg-black font-semibold text-xl text-dark-100 lg:opacity-0 pb-20 lg:pb-100;
 
       .wrapper {
-        @apply container mx-auto px-5 pb-20 2xl:px-0 flex flex-col lg:flex-row justify-center gap-20;
+        @apply container mx-auto px-5 pb-32 mb-32 2xl:px-0 flex flex-col lg:flex-row justify-center gap-20;
       }
 
       h2 {
@@ -224,7 +224,7 @@ body {
   }
 
   #performance {
-    @apply w-dvw h-full overflow-hidden pt-20 lg:pt-20 flex flex-col items-center relative;
+  @apply w-dvw h-full overflow-hidden pt-32 lg:pt-48 flex flex-col items-center relative bg-black;
 
     h2 {
       @apply font-semibold text-3xl lg:text-6xl text-white max-w-2xl text-center;
