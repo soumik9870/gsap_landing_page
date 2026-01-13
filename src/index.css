@@ -25,13 +25,11 @@
 }
 
 :root {
-  --gradient-color: linear-gradient(
-    to bottom right,
-    #0894ff 0%,
-    #c959dd 34%,
-    #ff2e54 68%,
-    #ff9004
-  );
+  --gradient-color: linear-gradient(to bottom right,
+      #0894ff 0%,
+      #c959dd 34%,
+      #ff2e54 68%,
+      #ff9004);
 }
 
 @theme {
@@ -207,10 +205,10 @@ body {
     }
 
     .content {
-  @apply relative z-10 my-5 lg:-mt-40 bg-black font-semibold text-xl text-dark-100 lg:opacity-0 pb-20 lg:pb-100;
+      @apply relative z-10 my-5 lg:-mt-40 bg-black font-semibold text-xl text-dark-100 lg:opacity-0;
 
       .wrapper {
-        @apply container mx-auto px-5 pb-32 mb-32 2xl:px-0 flex flex-col lg:flex-row justify-center gap-20;
+        @apply container mx-auto px-5 pb-20 2xl:px-0 flex flex-col lg:flex-row justify-center gap-20;
       }
 
       h2 {
@@ -224,7 +222,7 @@ body {
   }
 
   #performance {
-  @apply w-dvw h-full overflow-hidden pt-32 lg:pt-48 flex flex-col items-center relative bg-black;
+    @apply w-dvw h-full overflow-hidden pt-20 lg:pt-20 flex flex-col items-center relative;
 
     h2 {
       @apply font-semibold text-3xl lg:text-6xl text-white max-w-2xl text-center;
@@ -339,12 +337,15 @@ body {
         p {
           @apply font-semibold text-4xl max-w-2xs;
         }
+
         .apple-gradient {
           @apply p-10 rounded-3xl flex items-center gap-7 relative;
 
           background: #1d1d1f;
-          background-clip: padding-box; /* !important */
-          border: 3px solid transparent; /* !important */
+          background-clip: padding-box;
+          /* !important */
+          border: 3px solid transparent;
+          /* !important */
 
           ::before {
             content: "";
@@ -352,28 +353,26 @@ body {
             position: absolute;
             inset: 0px;
             z-index: -1;
-            margin: -5px; /* !important */
-            border-radius: 24px; /* !important */
-            background: linear-gradient(
-              91deg,
-              #0096ff 0%,
-              #bb64ff 42%,
-              #f2416b 74%,
-              #eb7500 100%
-            );
+            margin: -5px;
+            /* !important */
+            border-radius: 24px;
+            /* !important */
+            background: linear-gradient(91deg,
+                #0096ff 0%,
+                #bb64ff 42%,
+                #f2416b 74%,
+                #eb7500 100%);
           }
 
           p {
             @apply font-semibold lg:text-2xl 2xl:text-3xl;
 
             span {
-              background: linear-gradient(
-                91deg,
-                #0096ff 0%,
-                #bb64ff 42%,
-                #f2416b 74%,
-                #eb7500 100%
-              );
+              background: linear-gradient(91deg,
+                  #0096ff 0%,
+                  #bb64ff 42%,
+                  #f2416b 74%,
+                  #eb7500 100%);
               background-clip: text;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
