@@ -1,22 +1,25 @@
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Highlights = () => {
-  const isMobile = useMediaQuery({ query: '(max-width: 1024px)'});
+  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   useGSAP(() => {
-    gsap.to(['.left-column', '.right-column'], {
+    gsap.to([".left-column", ".right-column"], {
       scrollTrigger: {
-        trigger: '#highlights',
-        start: isMobile ? 'bottom bottom' : 'top center'
+        trigger: "#highlights",
+        start: isMobile ? "bottom bottom" : "top center",
       },
       y: 0,
       opacity: 1,
       stagger: 0.5,
       duration: 1,
-      ease: 'power1.inOut'
-    })
-  })
+      ease: "power1.inOut",
+    });
+  }, [isMobile]);
 
   return (
     <section id="highlights">
@@ -48,10 +51,7 @@ const Highlights = () => {
             <p>
               up to <span className="green-gradient"> 14 more hours </span>{" "}
               battery life.{" "}
-              <span span className="text-dark-100">
-                {" "}
-                (Up to 24 hours total.)
-              </span>
+              <span className="text-dark-100"> (Up to 24 hours total.)</span>
             </p>
           </div>
         </div>
