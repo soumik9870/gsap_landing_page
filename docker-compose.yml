@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      context: .
+    image: gsap-landing
+    container_name: gsap-landing-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped
