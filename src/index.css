@@ -25,13 +25,11 @@
 }
 
 :root {
-  --gradient-color: linear-gradient(
-    to bottom right,
-    #0894ff 0%,
-    #c959dd 34%,
-    #ff2e54 68%,
-    #ff9004
-  );
+  --gradient-color: linear-gradient(to bottom right,
+      #0894ff 0%,
+      #c959dd 34%,
+      #ff2e54 68%,
+      #ff9004);
 }
 
 @theme {
@@ -339,12 +337,15 @@ body {
         p {
           @apply font-semibold text-4xl max-w-2xs;
         }
+
         .apple-gradient {
           @apply p-10 rounded-3xl flex items-center gap-7 relative;
 
           background: #1d1d1f;
-          background-clip: padding-box; /* !important */
-          border: 3px solid transparent; /* !important */
+          background-clip: padding-box;
+          /* !important */
+          border: 3px solid transparent;
+          /* !important */
 
           ::before {
             content: "";
@@ -352,28 +353,26 @@ body {
             position: absolute;
             inset: 0px;
             z-index: -1;
-            margin: -5px; /* !important */
-            border-radius: 24px; /* !important */
-            background: linear-gradient(
-              91deg,
-              #0096ff 0%,
-              #bb64ff 42%,
-              #f2416b 74%,
-              #eb7500 100%
-            );
+            margin: -5px;
+            /* !important */
+            border-radius: 24px;
+            /* !important */
+            background: linear-gradient(91deg,
+                #0096ff 0%,
+                #bb64ff 42%,
+                #f2416b 74%,
+                #eb7500 100%);
           }
 
           p {
             @apply font-semibold lg:text-2xl 2xl:text-3xl;
 
             span {
-              background: linear-gradient(
-                91deg,
-                #0096ff 0%,
-                #bb64ff 42%,
-                #f2416b 74%,
-                #eb7500 100%
-              );
+              background: linear-gradient(91deg,
+                  #0096ff 0%,
+                  #bb64ff 42%,
+                  #f2416b 74%,
+                  #eb7500 100%);
               background-clip: text;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
