@@ -1,0 +1,29 @@
+name: Docker Build and push Docker image
+
+on:
+  push:
+    branches:
+      - main
+      - finalize-landing-page
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: log in to Docker hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest .
+
+      - name: push Docker image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest
