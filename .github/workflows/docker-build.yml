@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - finalize-landing-page
 
 jobs:
   build:
