@@ -3,6 +3,7 @@ name: Docker Build and push Docker image
 on:
   push:
     branches:
+      - main
       - finalize-landing-page
 
 jobs:
