@@ -40,6 +40,11 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: true
           script: |
-            cd ~/gsap-landing
-            docker compose pull
-            docker compose up -d
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest
+            docker stop gsap-landing || true
+            docker rm gsap-landing || true
+            docker run -d \
+              --name gsap-landing \
+              -p 8080:80 \
+              --restart unless-stopped \
+              ${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest
