@@ -40,25 +40,35 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: true
           script: |
-            IMAGE=${{ secrets.DOCKERHUB_USERNAME}}/gsap-landing:latest
+            IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest
 
+            echo "Pulling image..."
             docker pull $IMAGE
 
+            echo "Cleaning up any previous failed deploy..."
+            docker rm -f gsap-landing-new || true
+
+            echo "Starting new container..."
             docker run -d \
               --name gsap-landing-new \
               --restart unless-stopped \
               $IMAGE
 
-            echo "Waiting for health check to pass..."
-            sleep 10
+            echo "Waiting for health check..."
+            for i in {1..10}; do
+              STATUS=$(docker inspect --format='{{.State.Health.Status}}' gsap-landing-new 2>/dev/null || echo "starting")
+              echo "Health status: $STATUS"
+              if [ "$STATUS" = "healthy" ]; then
+                break
+              fi
+              sleep 3
+            done
 
             docker inspect --format='{{.State.Health.Status}}' gsap-landing-new | grep healthy
 
+            echo "Switching containers..."
             docker stop gsap-landing || true
             docker rm gsap-landing || true
-
             docker rename gsap-landing-new gsap-landing
 
-            docker run --rm \
-              --name container:gsap-landing \
-              curlimages/curl:http://localhost/health.html
+            echo "Deploy successful."
