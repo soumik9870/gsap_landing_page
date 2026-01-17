@@ -47,31 +47,15 @@ jobs:
             echo "Pulling image..."
             docker pull $IMAGE
 
-            echo "Cleaning up any previous failed deploy..."
-            docker rm -f gsap-landing-new || true
+            echo "Stopping existing container (if any)..."
+            docker stop gsap-landing || true
+            docker rm gsap-landing || true
 
             echo "Starting new container..."
             docker run -d \
-              --name gsap-landing-new \
+              --name gsap-landing \
               -p 8080:80 \
               --restart unless-stopped \
               $IMAGE
 
-            echo "Waiting for health check..."
-            for i in {1..10}; do
-              STATUS=$(docker inspect --format='{{.State.Health.Status}}' gsap-landing-new 2>/dev/null || echo "starting")
-              echo "Health status: $STATUS"
-              if [ "$STATUS" = "healthy" ]; then
-                break
-              fi
-              sleep 3
-            done
-
-            docker inspect --format='{{.State.Health.Status}}' gsap-landing-new | grep healthy
-
-            echo "Switching containers..."
-            docker stop gsap-landing || true
-            docker rm gsap-landing || true
-            docker rename gsap-landing-new gsap-landing
-
-            echo "Deploy successful."
+            echo "Deployment successful."
