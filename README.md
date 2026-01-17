@@ -1,6 +1,6 @@
-# 🚀 GSAP Landing Page – Production-Grade Deployment
+# 🚀 GSAP Landing Page
 
-> A **production-ready GSAP landing page** deployed with **Docker, Nginx, HTTPS, and CI/CD** on AWS EC2.
+> A **GSAP landing page** deployed with **Docker, Nginx, HTTPS, and CI/CD** on AWS EC2.
 
 🌐 **Live:** [https://lazydev.store](https://lazydev.store/)  
 📄 **Deep-dive:** [DEPLOYMENT.md](https://chatgpt.com/c/DEPLOYMENT.md)
