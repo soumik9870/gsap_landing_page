@@ -40,11 +40,25 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: true
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest
+            IMAGE=${{ secrets.DOCKERHUB_USERNAME}}/gsap-landing:latest
+
+            docker pull $IMAGE
+
+            docker run -d \
+              --name gsap-landing-new \
+              --restart unless-stopped \
+              $IMAGE
+
+            echo "Waiting for health check to pass..."
+            sleep 10
+
+            docker inspect --format='{{.state.Health.Status}}' gsap-landing-new | grep healthy
+
             docker stop gsap-landing || true
             docker rm gsap-landing || true
-            docker run -d \
-              --name gsap-landing \
-              -p 8080:80 \
-              --restart unless-stopped \
-              ${{ secrets.DOCKERHUB_USERNAME }}/gsap-landing:latest
+
+            docker rename gsap-landing-new gsap-landing
+
+            docker run --rm \
+              --name container:gsap-landing \
+              curlimages/curl:http://localhost/health.html
