@@ -52,7 +52,7 @@ jobs:
             echo "Waiting for health check to pass..."
             sleep 10
 
-            docker inspect --format='{{.state.Health.Status}}' gsap-landing-new | grep healthy
+            docker inspect --format='{{.State.Health.Status}}' gsap-landing-new | grep healthy
 
             docker stop gsap-landing || true
             docker rm gsap-landing || true
